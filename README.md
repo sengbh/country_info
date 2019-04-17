@@ -1,6 +1,11 @@
 # country_info
 
-A new Flutter project.
+This is an attempt to build a fully functional app using flutter (Dart).  The app's purpose is to list all countries with interesting fact detail descriptions.  This will hopefully be used to integrate with an API somewhere for a better experience etc..
+
+## TO-DO
+* Seperate all functions to different files and `import` accordingly.
+* build more routers to point at pages once clicked.
+* Fix PageOne() function 
 
 ## Getting Started
 
