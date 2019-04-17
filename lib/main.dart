@@ -30,14 +30,16 @@ class _HomeState extends State<HomeApp>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: new AppBar(
         //title: PageOne(),
         centerTitle: true,
-        title: new Text("HOOME"),
+        title: new Text("HOME"),
       ),
-      body: _children[_currentIndex],
+      body: (_children[_currentIndex]
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
+        onTap: onTabT,
+        currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.home),
@@ -51,12 +53,12 @@ class _HomeState extends State<HomeApp>{
             icon: new Icon(Icons.person),
             title: new Text("Profile"),
           ),
-        ]
+        ],
       ),
     );
   }
 
-  void OnTab(int index) {
+  void onTabT(int index) {
     setState((){
       _currentIndex = index;
     });
@@ -70,35 +72,50 @@ class ColorTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: color,
-    );
-  }
-}
-
-class PageOne extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: new Text("Home Screen")
+    return Scaffold (
+      appBar: new AppBar(
+        title: Container(
+          color: color,
+        ),
       ),
-      body: Center(
+      body: new Center(
         child: RaisedButton(
-          child: new Text("Open page"),
+          child: new Text("click me!"),
           onPressed: (){
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => PageTwo()) 
+              MaterialPageRoute(builder: (context) => PageTwo())
             );
           },
         ),
       ),
     );
   }
-
 }
+
+// class PageOne extends StatelessWidget{
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         centerTitle: true,
+//         title: new Text("Home Screen")
+//       ),
+//       body: Center(
+//         child: RaisedButton(
+//           child: new Text("Open page"),
+//           onPressed: (){
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(builder: (context) => PageTwo()) 
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+
+// }
 
 class PageTwo extends StatelessWidget {
   @override
