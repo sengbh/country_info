@@ -30,13 +30,11 @@ class _HomeState extends State<HomeApp>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
-        //title: PageOne(),
+      appBar: AppBar(
         centerTitle: true,
-        title: new Text("HOME"),
+        title: TapBarTitle(),
       ),
-      body: (_children[_currentIndex]
-      ),
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabT,
         currentIndex: _currentIndex,
@@ -67,17 +65,10 @@ class _HomeState extends State<HomeApp>{
 
 class ColorTab extends StatelessWidget {
   final Color color;
-
   ColorTab(this.color);
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
-      appBar: new AppBar(
-        title: Container(
-          color: color,
-        ),
-      ),
+    return Scaffold(
       body: new Center(
         child: RaisedButton(
           child: new Text("click me!"),
@@ -88,7 +79,7 @@ class ColorTab extends StatelessWidget {
             );
           },
         ),
-      ),
+      ),  
     );
   }
 }
@@ -120,21 +111,29 @@ class ColorTab extends StatelessWidget {
 class PageTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var data = "back";
     return Scaffold(
       appBar: AppBar(
         title: new Center(
           child: new Text("Details"),
         ),
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: new Text(data),
-        ), 
+      body: new Center(
+        child: new Text("123 back!", style: TextStyle(fontSize: 24.0),),
+      ),
+    );   
+  } 
+  
+}
+
+class TapBarTitle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: new Text("Home Screen"),
       ),
     );
+    
   }
 }
