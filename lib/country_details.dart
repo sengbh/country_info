@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 class CountryDetails extends StatelessWidget {
+
   final country;
-  var imageUrl = 'http://66.media.tumblr.com/8db0d541e8bd5b7d2b06b5144b764498/tumblr_np297trsYs1skelofo1_500.jpg';
+  var imageUrl = 'http://66.media.tumblr.com/8db0d541e8bd5b7d2b06b5144b764498/tumblr_np297trsYs1skelofo1_500.jpg/or06FN3Dka5tukK1e9sl16pB3iy.jpg';
   CountryDetails(this.country);
   Color mainColor = const Color(0xff3C3261);
 

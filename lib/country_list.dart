@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'country_details.dart';
 
 
 class HomeApp extends StatefulWidget {
@@ -37,7 +38,7 @@ class HomeAppState extends State<HomeApp> {
           color: mainColor,
         ),
         title: new Text(
-          'Movies',
+          'Countries',
           style: new TextStyle(color: mainColor, fontFamily: 'Arvo', fontWeight: FontWeight.bold),
         ),
         actions: <Widget>[
@@ -60,7 +61,12 @@ class HomeAppState extends State<HomeApp> {
                   return new FlatButton(
                     child: new CountryCell(countries, i),
                     padding: const EdgeInsets.all(0.0),
-                    color:  Colors.white,
+                    onPressed: (){
+                      Navigator.push(context, new MaterialPageRoute(builder: (context){
+                        return new CountryDetails(countries[i]);
+                      }));
+                    },
+                    color: Colors.white,
                   );
                 }
               ),
@@ -77,7 +83,7 @@ class CountryCell extends StatelessWidget {
   final countries, i;
 
   Color mainColor = const Color(0xff3C3261);
-  var image_url = 'https://image.tmdb.org/t/p/w500/';
+  var imageUrl = 'http://66.media.tumblr.com/8db0d541e8bd5b7d2b06b5144b764498/tumblr_np297trsYs1skelofo1_500.jpg/or06FN3Dka5tukK1e9sl16pB3iy.jpg';
   CountryCell(this.countries, this.i);
 
   @override
@@ -99,7 +105,7 @@ class CountryCell extends StatelessWidget {
                   color: Colors.grey,
                   image: new DecorationImage(
                     image: new NetworkImage(
-                      image_url + countries[i]['poster_path']
+                      imageUrl + countries[i]['poster_path']
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -166,9 +172,9 @@ class CountryTitle extends StatelessWidget {
     return new Padding(
       padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
       child: new Text(
-        'Top Rated',
+        'Top Listed',
         style: new TextStyle(
-          fontSize:  40.0,
+          fontSize:  30.0,
           color: mainColor,
           fontWeight:  FontWeight.bold,
           fontFamily: 'Arvo', 
@@ -180,7 +186,11 @@ class CountryTitle extends StatelessWidget {
 }
 
 Future<Map> getJson() async {
-  var url = '';
+  var url = 'http://api.themoviedb.org/3/discover/movie?api_key=004cbaf19212094e32aa9ef6f6577f22';
   http.Response response = await http.get(url);
-  return json.decode(response.body);
+  if(response.statusCode == 200){
+    return json.decode(response.body);
+  }else{
+    throw Exception('Failed to fetch data');
+  }
 }
