@@ -79,12 +79,20 @@ class HomeAppState extends State<HomeApp> {
 
 }
 
-class CountryCell extends StatelessWidget {
+class CountryCell extends StatefulWidget {
+
   final countries, i;
 
-  Color mainColor = const Color(0xff3C3261);
-  var imageUrl = 'http://66.media.tumblr.com/8db0d541e8bd5b7d2b06b5144b764498/tumblr_np297trsYs1skelofo1_500.jpg/or06FN3Dka5tukK1e9sl16pB3iy.jpg';
   CountryCell(this.countries, this.i);
+
+  @override
+  _CountryCellState createState() => _CountryCellState();
+}
+
+class _CountryCellState extends State<CountryCell> {
+  Color mainColor = const Color(0xff3C3261);
+
+  var imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +113,7 @@ class CountryCell extends StatelessWidget {
                   color: Colors.grey,
                   image: new DecorationImage(
                     image: new NetworkImage(
-                      imageUrl + countries[i]['poster_path']
+                      imageUrl + widget.countries[widget.i]['poster_path']
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -125,7 +133,7 @@ class CountryCell extends StatelessWidget {
                 child: new Column(
                   children: [
                     new Text(
-                      countries[i]['title'],
+                      widget.countries[widget.i]['title'],
                       style: new TextStyle(
                         fontSize: 20.0,
                         fontFamily: 'Arvo',
@@ -137,7 +145,7 @@ class CountryCell extends StatelessWidget {
                       padding: const EdgeInsets.all(2.0)
                     ),
                     new Text(
-                      countries[i]['overview'],
+                      widget.countries[widget.i]['overview'],
                       maxLines: 3,
                       style: new TextStyle(
                         color: const Color(0xff8785A4),

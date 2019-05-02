@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-class CountryDetails extends StatelessWidget {
+class CountryDetails extends StatefulWidget {
 
   final country;
-  var imageUrl = 'http://66.media.tumblr.com/8db0d541e8bd5b7d2b06b5144b764498/tumblr_np297trsYs1skelofo1_500.jpg/or06FN3Dka5tukK1e9sl16pB3iy.jpg';
+
   CountryDetails(this.country);
+
+  @override
+  _CountryDetailsState createState() => _CountryDetailsState();
+}
+
+class _CountryDetailsState extends State<CountryDetails> {
+  var imageUrl = '';
+
   Color mainColor = const Color(0xff3C3261);
 
   @override
@@ -13,7 +21,7 @@ class CountryDetails extends StatelessWidget {
     return new Scaffold(
       body: new Stack(fit: StackFit.expand, children: [
         new Image.network(
-          imageUrl + country['poster_path'],
+          imageUrl + widget.country['poster_path'],
           fit: BoxFit.cover,
         ),
         new BackdropFilter(
@@ -37,7 +45,7 @@ class CountryDetails extends StatelessWidget {
                       borderRadius: new BorderRadius.circular(10.0),
                       image: new DecorationImage(
                           image: new NetworkImage(
-                              imageUrl + country['poster_path']),
+                              imageUrl + widget.country['poster_path']),
                           fit: BoxFit.cover),
                       boxShadow: [
                         new BoxShadow(
@@ -53,14 +61,14 @@ class CountryDetails extends StatelessWidget {
                     children: <Widget>[
                       new Expanded(
                           child: new Text(
-                        country['title'],
+                        widget.country['title'],
                         style: new TextStyle(
                             color: Colors.white,
                             fontSize: 30.0,
                             fontFamily: 'Arvo'),
                       )),
                       new Text(
-                        '${country['vote_average']}/10',
+                        '${widget.country['vote_average']}/10',
                         style: new TextStyle(
                             color: Colors.white,
                             fontSize: 20.0,
@@ -69,7 +77,7 @@ class CountryDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                new Text(country['overview'],style: new TextStyle(color: Colors.white, fontFamily: 'Arvo')),
+                new Text(widget.country['overview'],style: new TextStyle(color: Colors.white, fontFamily: 'Arvo')),
                 new Padding(padding: const EdgeInsets.all(10.0)),
                 new Row(
                   children: <Widget>[
