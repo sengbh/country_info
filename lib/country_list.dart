@@ -194,7 +194,7 @@ class CountryTitle extends StatelessWidget {
 }
 
 Future<Map> getJson() async {
-  var url = 'http://api.themoviedb.org/3/discover/movie?api_key=004cbaf19212094e32aa9ef6f6577f22';
+  var url = '';
   http.Response response = await http.get(url);
   if(response.statusCode == 200){
     return json.decode(response.body);
